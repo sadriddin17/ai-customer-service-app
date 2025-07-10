@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AI Product Catalog</title>
+    <script src="/webjars/htmx.org/1.9.12/dist/htmx.min.js"></script>
+    <link rel="stylesheet" href="/webjars/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>🛍️ Product Management</h2>
+
+<!-- Button to load products -->
+<button class="fa fa-download"
+        hx-get="/ui/products"
+        hx-target="#productTableWrapper"
+        hx-swap="innerHTML">
+    Load Products
+</button>
+
+<div id="productTableWrapper" style="margin-top: 20px">
+    <!-- Products table will be loaded here -->
+</div>
+
+<a href="/ui/products/export" class="fa fa-download"> Export as CSV</a>
+
+<!-- Form to add new product -->
+<h3>Add Product</h3>
+<form hx-post="/ui/products"
+      hx-target="#productTableWrapper"
+      hx-swap="innerHTML"
+      style="margin-top: 10px">
+    <label>Title: <input type="text" name="title" required></label><br>
+    <label>Description: <input type="text" name="description"></label><br>
+    <label>Price: <input type="number" step="0.01" name="price"></label><br>
+    <label>Vendor: <input type="text" name="vendor"></label><br>
+    <button type="submit" class="fa fa-plus"> Add</button>
+</form>
+
+</body>
+</html>

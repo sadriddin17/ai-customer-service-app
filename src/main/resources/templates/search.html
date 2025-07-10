@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Live Search</title>
+    <script src="/webjars/htmx.org/1.9.12/dist/htmx.min.js"></script>
+</head>
+<body>
+<h2>🔍 Live Product Search</h2>
+
+<input type="search"
+       name="query"
+       placeholder="Search by title"
+       hx-get="/ui/products/search"
+       hx-target="#results"
+       hx-trigger="keyup changed delay:300ms"/>
+
+<div id="results" style="margin-top: 20px">
+    <!-- Results will appear here -->
+</div>
+
+<a href="/">← Back to home</a>
+</body>
+</html>

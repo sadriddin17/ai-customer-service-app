@@ -1,0 +1,18 @@
+<table border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Vendor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.title}">Sample</td>
+        <td th:text="${product.description}">...</td>
+        <td th:text="${product.price}">0.00</td>
+        <td th:text="${product.vendor}">Vendor</td>
+    </tr>
+    </tbody>
+</table>
