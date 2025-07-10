@@ -1,0 +1,21 @@
+### Get all products
+GET http://localhost:8080/products
+Accept: application/json
+
+### Search
+GET http://localhost:8080/products/search?query=test
+Accept: application/json
+
+### Add product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "title": "AI Shirt",
+  "description": "Smart shirt for testing",
+  "price": 39.99,
+  "vendor": "Famme"
+}
+
+### Delete product
+DELETE http://localhost:8080/products/1

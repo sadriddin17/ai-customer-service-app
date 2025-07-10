@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://172.31.56.31:5432/ai_customer_db
+    username: ai_customer_tech_user
+    password: secure_password
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      mode: never
+
+  flyway:
+    enabled: true
+
+  main:
+    allow-bean-definition-overriding: true
+
+  jackson:
+    serialization:
+      indent_output: true
+  application:
+    name: ai-customer-service-app
+
+server:
+  port: 8080
+
