@@ -18,7 +18,7 @@
         <td th:text="${product.vendor}">Brand</td>
         <td>
             <button class="fa fa-trash"
-                    hx-delete="/ui/products/${product.id}"
+                    th:attr="hx-delete=@{'/ui/products/' + ${product.id}}"
                     hx-target="#productTableWrapper"
                     hx-swap="innerHTML">
                 Delete

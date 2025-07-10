@@ -40,21 +40,6 @@ class ProductController(
         return productService.getById(id)?.let { ResponseEntity.ok(it) }
             ?: ResponseEntity.notFound().build()
     }
-
-    @GetMapping("/{id}/edit")
-    fun editForm(@PathVariable id: Int, model: Model): String {
-        val product = productService.getById(id)
-            ?: return "redirect:/"
-        model.addAttribute("product", product)
-        return "edit"
-    }
-
-    @PutMapping("/{id}")
-    fun update(@PathVariable id: Int, @ModelAttribute product: Product): String {
-        productService.deleteProduct(id)
-        productService.addProduct(product.copy(id = id))
-        return "redirect:/"
-    }
 }
 
 @Controller
@@ -87,6 +72,21 @@ class UiProductController(
     fun search(@RequestParam query: String, model: Model): String {
         model.addAttribute("products", productService.search(query))
         return "fragments/product-search-results"
+    }
+
+    @GetMapping("/{id}/edit")
+    fun editForm(@PathVariable id: Int, model: Model): String {
+        val product = productService.getById(id)
+            ?: return "redirect:/"
+        model.addAttribute("product", product)
+        return "edit"
+    }
+
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: Int, @ModelAttribute product: Product): String {
+        productService.deleteProduct(id)
+        productService.addProduct(product.copy(id = id))
+        return "redirect:/"
     }
 
     @GetMapping("/export")
