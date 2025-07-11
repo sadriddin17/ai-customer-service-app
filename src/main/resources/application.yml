@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://172.31.56.31:5432/ai_customer_db
-#    url: jdbc:postgresql://localhost:5432/ai_customer_db
+#    url: jdbc:postgresql://172.31.56.31:5432/ai_customer_db
+    url: jdbc:postgresql://localhost:5432/ai_customer_db
     username: ai_customer_tech_user
     password: secure_password
     driver-class-name: org.postgresql.Driver
