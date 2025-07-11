@@ -1,40 +1,142 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>AI Product Catalog</title>
     <script src="/webjars/htmx.org/1.9.12/dist/htmx.min.js"></script>
     <link rel="stylesheet" href="/webjars/font-awesome/6.7.2/css/all.min.css">
-    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button i {
+            margin-right: 6px;
+        }
+
+        input[type="search"] {
+            padding: 6px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        form {
+            margin-top: 30px;
+            padding: 10px;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 350px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 6px;
+            font-size: 14px;
+        }
+
+        form button {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            font-size: 14px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #productTableWrapper {
+            margin-top: 30px;
+        }
+
+        .export-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .export-link i {
+            margin-right: 6px;
+        }
+    </style>
 </head>
 <body>
 
 <h2>🛍️ Product Management</h2>
 
-<!-- Button to load products -->
-<button class="fa fa-download"
-        hx-get="/ui/products"
-        hx-target="#productTableWrapper"
-        hx-swap="innerHTML">
-    Load Products
-</button>
+<!-- Controls -->
+<div>
+    <button class="button"
+            hx-get="/ui/products"
+            hx-target="#productTableWrapper"
+            hx-swap="innerHTML">
+        <i class="fa fa-download"></i>Load Products
+    </button>
 
-<div id="productTableWrapper" style="margin-top: 20px">
-    <!-- Products table will be loaded here -->
+    <label>
+        <input type="search"
+               name="query"
+               placeholder="Search products..."
+               hx-get="/ui/products/search"
+               hx-target="#productTableWrapper"
+               hx-trigger="keyup changed delay:300ms"/>
+    </label>
 </div>
 
-<a href="/ui/products/export" class="fa fa-download"> Export as CSV</a>
+<!-- Table Output -->
+<div id="productTableWrapper"></div>
 
-<!-- Form to add new product -->
+<!-- Export Link -->
+<a href="/ui/products/export" class="export-link">
+    <i class="fa fa-file-export"></i>Export as CSV
+</a>
+
+<!-- Add Form -->
 <h3>Add Product</h3>
 <form hx-post="/ui/products"
       hx-target="#productTableWrapper"
-      hx-swap="innerHTML"
-      style="margin-top: 10px">
-    <label>Title: <input type="text" name="title" required></label><br>
-    <label>Description: <input type="text" name="description"></label><br>
-    <label>Price: <input type="number" step="0.01" name="price"></label><br>
-    <label>Vendor: <input type="text" name="vendor"></label><br>
-    <button type="submit" class="fa fa-plus"> Add</button>
+      hx-swap="innerHTML">
+    <label>Title:
+        <input type="text" name="title" required>
+    </label>
+    <label>Description:
+        <input type="text" name="description">
+    </label>
+    <label>Price:
+        <input type="number" step="0.01" name="price">
+    </label>
+    <label>Vendor:
+        <input type="text" name="vendor">
+    </label>
+    <button type="submit">
+        <i class="fa fa-plus"></i> Add Product
+    </button>
 </form>
 
 </body>

@@ -1,18 +1,18 @@
-<table border="1" cellpadding="5">
-    <thead>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead style="background-color: #f0f0f0;">
     <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Vendor</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Title</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Description</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Price</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Vendor</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="product : ${products}">
-        <td th:text="${product.title}">Sample</td>
-        <td th:text="${product.description}">...</td>
-        <td th:text="${product.price}">0.00</td>
-        <td th:text="${product.vendor}">Vendor</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.title}">Sample</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.description}">...</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.price}">0.00</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.vendor}">Vendor</td>
     </tr>
     </tbody>
 </table>

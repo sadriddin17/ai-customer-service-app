@@ -1,29 +1,54 @@
-<table border="1" cellpadding="5" cellspacing="0">
-    <thead>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead style="background-color: #f0f0f0;">
     <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Vendor</th>
-        <th>Actions</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">ID</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Title</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Description</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Price</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Vendor</th>
+        <th style="padding: 10px; border: 1px solid #ccc;">Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="product : ${products}">
-        <td th:text="${product.id}">1</td>
-        <td th:text="${product.title}">Sample</td>
-        <td th:text="${product.description}">Desc</td>
-        <td th:text="${product.price}">99.99</td>
-        <td th:text="${product.vendor}">Brand</td>
-        <td>
-            <button class="fa fa-trash"
-                    th:attr="hx-delete=@{'/ui/products/' + ${product.id}}"
-                    hx-target="#productTableWrapper"
-                    hx-swap="innerHTML">
-                Delete
-            </button>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.id}">1</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.title}">Sample</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.description}">Desc</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.price}">99.99</td>
+        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.vendor}">Brand</td>
+        <td style="padding: 8px; border: 1px solid #ddd;">
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <!-- Delete Button -->
+                <button type="button"
+                        class="fa fa-trash"
+                        title="Delete"
+                        style="padding: 6px 12px;
+                       background-color: #dc3545;
+                       color: white;
+                       border: none;
+                       border-radius: 4px;
+                       cursor: pointer;"
+                        th:attr="hx-delete=@{'/ui/products/' + ${product.id}}"
+                        hx-target="#productTableWrapper"
+                        hx-swap="innerHTML">
+                    Delete
+                </button>
+
+                <!-- Edit Button -->
+                <a th:href="@{'/ui/products/' + ${product.id} + '/edit'}"
+                   class="fa fa-edit"
+                   style="padding: 6px 12px;
+                  background-color: #007bff;
+                  color: white;
+                  border-radius: 4px;
+                  text-decoration: none;
+                  display: inline-block;"
+                   title="Edit">
+                    Edit
+                </a>
+            </div>
         </td>
+
     </tr>
     </tbody>
 </table>

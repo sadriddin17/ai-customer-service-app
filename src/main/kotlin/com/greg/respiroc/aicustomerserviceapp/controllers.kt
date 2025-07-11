@@ -82,7 +82,7 @@ class UiProductController(
         return "edit"
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     fun update(@PathVariable id: Int, @ModelAttribute product: Product): String {
         productService.deleteProduct(id)
         productService.addProduct(product.copy(id = id))

@@ -1,23 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Live Search</title>
+    <meta charset="UTF-8">
+    <title>Live Product Search</title>
     <script src="/webjars/htmx.org/1.9.12/dist/htmx.min.js"></script>
+    <link rel="stylesheet" href="/webjars/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="search"] {
+            width: 300px;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #results {
+            margin-top: 30px;
+        }
+
+        a.back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a.back-link i {
+            margin-right: 6px;
+        }
+    </style>
 </head>
 <body>
+
 <h2>🔍 Live Product Search</h2>
 
-<input type="search"
-       name="query"
-       placeholder="Search by title"
-       hx-get="/ui/products/search"
-       hx-target="#results"
-       hx-trigger="keyup changed delay:300ms"/>
+<label>
+    <input type="search"
+           name="query"
+           placeholder="Search by title"
+           hx-get="/ui/products/search"
+           hx-target="#results"
+           hx-trigger="keyup changed delay:300ms"/>
+</label>
 
-<div id="results" style="margin-top: 20px">
+<div id="results">
     <!-- Results will appear here -->
 </div>
 
-<a href="/">← Back to home</a>
+<a href="/" class="back-link"><i class="fa fa-arrow-left"></i> Back to Home</a>
+
 </body>
 </html>
