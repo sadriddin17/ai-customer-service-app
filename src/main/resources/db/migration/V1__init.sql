@@ -1,13 +1,14 @@
 CREATE TABLE products (
-                          id SERIAL PRIMARY KEY,
+                          id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                           title TEXT NOT NULL,
                           description TEXT,
                           price NUMERIC,
-                          vendor TEXT
+                          vendor TEXT,
+                          featured BOOLEAN DEFAULT false
 );
 
 CREATE TABLE variants (
-                          id SERIAL PRIMARY KEY,
+                          id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                           product_id INT REFERENCES products(id) ON DELETE CASCADE,
                           title TEXT,
                           sku TEXT,

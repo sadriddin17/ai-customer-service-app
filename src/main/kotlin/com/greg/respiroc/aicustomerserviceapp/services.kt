@@ -25,4 +25,6 @@ class ProductService(
     }
 
     fun getById(id: Int): Product? = productRepository.findById(id)
+
+    fun update(product: Product) = productRepository.update(product)
 }

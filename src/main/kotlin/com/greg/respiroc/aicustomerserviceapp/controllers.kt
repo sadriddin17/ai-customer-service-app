@@ -1,10 +1,12 @@
 package com.greg.respiroc.aicustomerserviceapp
 
 import jakarta.servlet.http.HttpServletResponse
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/products")
@@ -101,6 +103,21 @@ class UiProductController(
                 writer.println("${it.id},\"${it.title}\",\"${it.description}\",${it.price},\"${it.vendor}\"")
             }
         }
+    }
+
+    @PatchMapping("/{id}/toggle-featured")
+    fun toggleFeatured(
+        @PathVariable id: Int,
+        model: Model
+    ): String {
+        val product = productService.getById(id)
+            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Product $id not found")
+
+        val updated = product.copy(featured = !product.featured)
+        productService.update(updated)
+
+        model.addAttribute("product", updated)
+        return "fragments/product-table :: row"
     }
 }
 

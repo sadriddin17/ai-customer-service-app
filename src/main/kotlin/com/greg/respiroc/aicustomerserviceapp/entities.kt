@@ -5,7 +5,8 @@ data class Product(
     val title: String,
     val description: String?,
     val price: Double?,
-    val vendor: String?
+    val vendor: String?,
+    var featured: Boolean = false
 )
 
 data class Variant(

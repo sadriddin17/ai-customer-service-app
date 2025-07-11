@@ -1,43 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="wa-theme-default" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Live Product Search</title>
-    <script src="/webjars/htmx.org/1.9.12/dist/htmx.min.js"></script>
-    <link rel="stylesheet" href="/webjars/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/webawesome.css" />
+
+    <link rel="stylesheet"
+          href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/themes/default.css" />
+
+    <link rel="stylesheet"
+          href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/color/palettes/default.css" />
+
+    <script type="module"
+            src="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/webawesome.loader.js"></script>
+
+    <script src="/webjars/htmx.org/2.0.6/dist/htmx.min.js" defer></script>
+
     <style>
+        /* Base --------------------------------------------------------------*/
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            background-color: #f9f9f9;
+            background: var(--wa-color-surface-default);
+            color: var(--wa-color-text-normal);
         }
 
-        h2 {
-            margin-bottom: 20px;
-        }
+        h2 { margin-bottom: 20px; }
 
+        /* Search box --------------------------------------------------------*/
         input[type="search"] {
             width: 300px;
             padding: 8px;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--wa-color-surface-border);
             border-radius: 4px;
         }
 
-        #results {
-            margin-top: 30px;
-        }
+        /* Results container -------------------------------------------------*/
+        #results { margin-top: 30px; }
 
+        /* “Back” link -------------------------------------------------------*/
         a.back-link {
             display: inline-block;
             margin-top: 20px;
-            color: #007bff;
+            color: var(--wa-color-text-link);
             text-decoration: none;
         }
-
-        a.back-link i {
-            margin-right: 6px;
-        }
+        a.back-link wa-icon { margin-right: 6px; }
     </style>
 </head>
 <body>
@@ -50,14 +61,14 @@
            placeholder="Search by title"
            hx-get="/ui/products/search"
            hx-target="#results"
-           hx-trigger="keyup changed delay:300ms"/>
+           hx-trigger="keyup changed delay:300ms" />
 </label>
 
-<div id="results">
-    <!-- Results will appear here -->
-</div>
+<div id="results"><!-- Results appear here --></div>
 
-<a href="/" class="back-link"><i class="fa fa-arrow-left"></i> Back to Home</a>
+<a href="/" class="back-link">
+    <wa-icon name="arrow-left"></wa-icon>Back to Home
+</a>
 
 </body>
 </html>

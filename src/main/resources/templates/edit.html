@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" class="wa-theme-default" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="/webjars/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/webawesome.css" />
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/themes/default.css" />
+    <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/color/palettes/default.css" />
+    <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/webawesome.loader.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            background-color: #f9f9f9;
+            background-color: var(--wa-color-surface-default);
+            color: var(--wa-color-text-normal);
         }
 
         h2 {
@@ -18,8 +22,8 @@
         form {
             width: 400px;
             padding: 20px;
-            background: #ffffff;
-            border: 1px solid #ccc;
+            background: var(--wa-color-surface-raised);
+            border: 1px solid var(--wa-color-surface-border);
             border-radius: 6px;
         }
 
@@ -32,26 +36,34 @@
             width: 100%;
             padding: 6px;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--wa-color-surface-border);
             border-radius: 4px;
         }
 
         button {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: var(--wa-color-brand-fill-normal);
+            color: var(--wa-color-brand-on-normal);
             border: none;
-            color: white;
             font-size: 14px;
             border-radius: 4px;
             cursor: pointer;
+        }
+
+        button wa-icon {
+            margin-right: 6px;
         }
 
         .back-link {
             display: inline-block;
             margin-top: 20px;
             text-decoration: none;
-            color: #007bff;
+            color: var(--wa-color-brand-fill-normal);
+        }
+
+        .back-link wa-icon {
+            margin-right: 6px;
         }
     </style>
 </head>
@@ -74,10 +86,14 @@
     <label>Vendor:
         <input type="text" name="vendor" th:value="${product.vendor}">
     </label>
-    <button type="submit"><i class="fa fa-save"></i> Update Product</button>
+    <button type="submit">
+        <wa-icon name="save"></wa-icon> Update Product
+    </button>
 </form>
 
-<a href="/" class="back-link"><i class="fa fa-arrow-left"></i> Back to Home</a>
+<a href="/" class="back-link">
+    <wa-icon name="arrow-left"></wa-icon> Back to Home
+</a>
 
 </body>
 </html>

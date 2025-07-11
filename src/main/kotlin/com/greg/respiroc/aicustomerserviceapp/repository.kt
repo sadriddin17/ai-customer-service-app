@@ -45,6 +45,27 @@ class ProductRepository(private val jdbcClient: JdbcClient) {
         .sql("DELETE FROM products WHERE id = :id")
         .param("id", id)
         .update()
+    fun update(product: Product): Int {
+        return jdbcClient.sql(
+            """
+        UPDATE products
+        SET title = :title,
+            description = :description,
+            price = :price,
+            vendor = :vendor,
+            featured = :featured
+        WHERE id = :id
+        """.trimIndent()
+        )
+            .param("id", product.id)
+            .param("title", product.title)
+            .param("description", product.description)
+            .param("price", product.price)
+            .param("vendor", product.vendor)
+            .param("featured", product.featured)
+            .update()
+    }
+
 }
 
 @Repository

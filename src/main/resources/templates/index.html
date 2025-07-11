@@ -1,68 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="wa-theme-default" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>AI Product Catalog</title>
-    <script src="/webjars/htmx.org/1.9.12/dist/htmx.min.js"></script>
-    <link rel="stylesheet" href="/webjars/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/webawesome.css" />
+
+    <link rel="stylesheet"
+          href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/themes/default.css" />
+
+    <link rel="stylesheet"
+          href="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/styles/color/palettes/default.css" />
+
+    <script type="module"
+            src="https://early.webawesome.com/webawesome@3.0.0-beta.2/dist/webawesome.loader.js"></script>
+
+    <script src="/webjars/htmx.org/2.0.6/dist/htmx.min.js" defer></script>
+
     <style>
+        /* Foundations ------------------------------------------------------*/
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            background-color: #f9f9f9;
+            background-color: var(--wa-color-surface-default);
+            color: var(--wa-color-text-normal);
         }
+        h2 { margin-bottom: 20px; }
 
-        h2 {
-            margin-bottom: 20px;
-        }
-
+        /* Buttons -----------------------------------------------------------*/
         .button {
             padding: 8px 16px;
             margin-right: 10px;
-            background-color: #007bff;
+            background: var(--wa-color-brand-fill-normal);
+            color: var(--wa-color-brand-on-normal);
             border: none;
-            color: white;
             font-size: 14px;
             border-radius: 4px;
             cursor: pointer;
         }
+        .button wa-icon { margin-right: 6px; }
 
-        .button i {
-            margin-right: 6px;
-        }
-
+        /* Inputs ------------------------------------------------------------*/
         input[type="search"] {
             padding: 6px;
             font-size: 14px;
             border-radius: 4px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--wa-color-surface-border);
         }
 
+        /* Form card ---------------------------------------------------------*/
         form {
             margin-top: 30px;
             padding: 10px;
-            background: #ffffff;
-            border: 1px solid #ccc;
+            background: var(--wa-color-surface-raised);
+            border: 1px solid var(--wa-color-surface-border);
             border-radius: 5px;
             width: 350px;
         }
-
-        form label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
+        form label { display: block; margin-bottom: 10px; }
         form input {
             width: 100%;
             padding: 6px;
             font-size: 14px;
         }
-
         form button {
             margin-top: 10px;
             width: 100%;
-            background-color: #28a745;
-            color: white;
+            background: var(--wa-color-success-fill-normal);
+            color: var(--wa-color-success-on-normal);
             font-size: 14px;
             padding: 8px;
             border: none;
@@ -70,24 +76,18 @@
             cursor: pointer;
         }
 
-        #productTableWrapper {
-            margin-top: 30px;
-        }
-
+        /* Misc --------------------------------------------------------------*/
+        #productTableWrapper { margin-top: 30px; }
         .export-link {
             display: inline-block;
             margin-top: 20px;
-            color: #007bff;
+            color: var(--wa-color-brand-fill-normal);
             text-decoration: none;
         }
-
-        .export-link i {
-            margin-right: 6px;
-        }
+        .export-link wa-icon { margin-right: 6px; }
     </style>
 </head>
 <body>
-
 <h2>🛍️ Product Management</h2>
 
 <!-- Controls -->
@@ -96,7 +96,7 @@
             hx-get="/ui/products"
             hx-target="#productTableWrapper"
             hx-swap="innerHTML">
-        <i class="fa fa-download"></i>Load Products
+        <wa-icon name="download"></wa-icon>Load Products
     </button>
 
     <label>
@@ -114,7 +114,7 @@
 
 <!-- Export Link -->
 <a href="/ui/products/export" class="export-link">
-    <i class="fa fa-file-export"></i>Export as CSV
+    <wa-icon name="file-export"></wa-icon>Export as CSV
 </a>
 
 <!-- Add Form -->
@@ -135,9 +135,8 @@
         <input type="text" name="vendor">
     </label>
     <button type="submit">
-        <i class="fa fa-plus"></i> Add Product
+        <wa-icon name="plus"></wa-icon> Add Product
     </button>
 </form>
-
 </body>
 </html>

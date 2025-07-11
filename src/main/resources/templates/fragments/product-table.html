@@ -1,54 +1,103 @@
-<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-    <thead style="background-color: #f0f0f0;">
+<table class="wa-data-table">
+    <thead>
     <tr>
-        <th style="padding: 10px; border: 1px solid #ccc;">ID</th>
-        <th style="padding: 10px; border: 1px solid #ccc;">Title</th>
-        <th style="padding: 10px; border: 1px solid #ccc;">Description</th>
-        <th style="padding: 10px; border: 1px solid #ccc;">Price</th>
-        <th style="padding: 10px; border: 1px solid #ccc;">Vendor</th>
-        <th style="padding: 10px; border: 1px solid #ccc;">Actions</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Vendor</th>
+        <th>Actions</th>
+        <th>Featured</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="product : ${products}">
-        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.id}">1</td>
-        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.title}">Sample</td>
-        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.description}">Desc</td>
-        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.price}">99.99</td>
-        <td style="padding: 8px; border: 1px solid #ddd;" th:text="${product.vendor}">Brand</td>
-        <td style="padding: 8px; border: 1px solid #ddd;">
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <!-- Delete Button -->
+    <tr th:each="product : ${products}" th:id="'product-row-' + ${product.id}">
+        <td th:text="${product.id}">1</td>
+        <td th:text="${product.title}">Sample</td>
+        <td th:text="${product.description}">Description</td>
+        <td th:text="${product.price}">99.99</td>
+        <td th:text="${product.vendor}">Vendor</td>
+        <td>
+            <div class="action-buttons">
+                <!-- Delete -->
                 <button type="button"
-                        class="fa fa-trash"
-                        title="Delete"
-                        style="padding: 6px 12px;
-                       background-color: #dc3545;
-                       color: white;
-                       border: none;
-                       border-radius: 4px;
-                       cursor: pointer;"
+                        class="wa-button wa-button--danger"
                         th:attr="hx-delete=@{'/ui/products/' + ${product.id}}"
                         hx-target="#productTableWrapper"
                         hx-swap="innerHTML">
-                    Delete
+                    <wa-icon name="trash"></wa-icon> Delete
                 </button>
 
-                <!-- Edit Button -->
+                <!-- Edit -->
                 <a th:href="@{'/ui/products/' + ${product.id} + '/edit'}"
-                   class="fa fa-edit"
-                   style="padding: 6px 12px;
-                  background-color: #007bff;
-                  color: white;
-                  border-radius: 4px;
-                  text-decoration: none;
-                  display: inline-block;"
-                   title="Edit">
-                    Edit
+                   class="wa-button wa-button--primary">
+                    <wa-icon name="edit"></wa-icon> Edit
                 </a>
             </div>
         </td>
-
+        <td>
+            <button type="button"
+                    class="wa-button"
+                    th:attr="hx-patch=@{'/ui/products/' + ${product.id} + '/toggle-featured'}"
+                    hx-swap="outerHTML">
+                <wa-icon th:attr="name=${product.featured} ? 'star' : 'star-outline'"></wa-icon>
+                <span th:text="${product.featured} ? 'Unmark Featured' : 'Mark as Featured'"></span>
+            </button>
+        </td>
     </tr>
     </tbody>
 </table>
+<style>
+    .wa-data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: var(--wa-color-surface-raised, #ffffff);
+    }
+
+    .wa-data-table th {
+        padding: 10px;
+        border: 1px solid var(--wa-color-surface-border, #ddd);
+        background-color: var(--wa-color-brand-fill-quiet, #f0f4f8);
+        color: var(--wa-color-brand-on-quiet, #333);
+    }
+
+    .wa-data-table td {
+        padding: 8px;
+        border: 1px solid var(--wa-color-surface-border, #ddd);
+        color: var(--wa-color-text-normal, #000);
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .wa-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+        background-color: var(--wa-color-danger-on-normal);
+    }
+
+    .wa-button--primary {
+        background-color: var(--wa-color-brand-fill-normal);
+        color: var(--wa-color-brand-on-normal);
+    }
+
+    .wa-button--danger {
+        background-color: var(--wa-color-danger-fill-normal);
+        color: var(--wa-color-danger-on-normal);
+    }
+
+    .wa-button wa-icon {
+        font-size: 16px;
+    }
+</style>
