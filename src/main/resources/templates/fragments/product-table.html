@@ -39,7 +39,8 @@
             <button type="button"
                     class="wa-button"
                     th:attr="hx-patch=@{'/ui/products/' + ${product.id} + '/toggle-featured'}"
-                    hx-swap="outerHTML">
+                    hx-swap="outerHTML"
+                    th:fragment="entity-row">
                 <wa-icon th:attr="name=${product.featured} ? 'star' : 'star-outline'"></wa-icon>
                 <span th:text="${product.featured} ? 'Unmark Featured' : 'Mark as Featured'"></span>
             </button>

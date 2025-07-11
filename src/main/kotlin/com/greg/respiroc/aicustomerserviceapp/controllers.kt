@@ -117,7 +117,7 @@ class UiProductController(
         productService.update(updated)
 
         model.addAttribute("product", updated)
-        return "fragments/product-table :: row"
+        return "fragments/product-table :: entity-row"
     }
 }
 
